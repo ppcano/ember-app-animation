@@ -1,3 +1,74 @@
 a.active {
   color: green;
 }
+
+
+a.disabled {
+  color: yellow;
+}
+
+
+
+.application-layout {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+
+  transition: left 1s ease-in-out;
+}
+
+.screen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+}
+
+.screen.index {
+  background-color: red;
+}
+
+.screen.account {
+  background-color: yellow;
+}
+
+.screen.account-detail {
+  background-color: blue;
+}
+
+.screen.settings {
+  background-color: gray;
+}
+
+
+/* using animation */
+.application-layout.is-account-detail {
+  left: 200%;
+}
+.application-layout.is-account {
+  left: 100%;
+}
+
+.application-layout.is-index {
+  left: 0%;
+}
+
+.application-layout.is-settings {
+  left: -100%;
+}
+
+
+.screen.account-detail {
+  left: -200%;
+}
+
+.screen.account {
+  left: -100%;
+}
+
+.screen.settings {
+  left: 100%;
+}

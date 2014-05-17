@@ -1,0 +1,12 @@
+
+<div class="screen account">
+Account
+
+{{#each item in controller}}
+  {{#link-to 'account.detail' item}}
+    {{item.name}}
+  {{/link-to}}
+{{/each}}
+
+{{#link-to 'index' }}Index{{/link-to}}
+</div>

@@ -11,7 +11,9 @@ var AppRouter = Router.extend({
 // application and index for free
 AppRouter.map(function() {
   this.route('index', { path: '/' });
-  this.route('account');
+  this.resource('account', function() {
+    this.route('detail', {path: ':account_id'});
+  });
   this.route('settings');
 });
 

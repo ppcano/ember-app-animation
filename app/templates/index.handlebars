@@ -1,3 +1,25 @@
-Index: {{text}}
+
+<div class="screen index">
+Index
+<br/>
+Text: {{text}}
+{{errors.text}}
+<br/>
+Name: {{content.name}}
+{{errors.name}}
+<br/>
+isValid: {{isValid}}
+<br/>
+
+<div {{action "debugAction"}} >DebugAction</div>
+<br/>
 
 
+<div class="hola" {{action 'hola'}}>Click hola</div>
+
+{{#link-to 'account.index'}}Account{{/link-to}}
+<br/>
+{{#link-to 'settings'}}Settings{{/link-to}}
+<br/>
+
+</div>

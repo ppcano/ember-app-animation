@@ -1,13 +1,32 @@
-var IndexRoute = Ember.Route.extend({
-  model: function(){
-      //return Ember.RSVP.reject('index error');
+import BaseRoute from 'app/routes/base_animated';
+
+var IndexRoute = BaseRoute.extend({
+
+  model: function() {
+
+    return new Em.RSVP.resolve({name: 'ppcano'});
+
+  },
+
+  afterModel: function(model, transition) {
+    
+    var ac = this.controllerFor('application')
+    if ( transition.router.currentHandlerInfos ) {
+      return this.animationPromise(transition, function() {
+        ac.set('position', 0);
+      });
+    } else {
+      ac.set('position', 0);
+    }
+
   },
 
   actions: {
-    error: function(error) {
-      console.log('ERROR INDEX HANDLING-------------------------');
-      console.log(error);
-      console.log('--------------------------------------');
+    debugAction: function() {
+
+      console.log('debug action');
+      return true;
+
     }
 
   }

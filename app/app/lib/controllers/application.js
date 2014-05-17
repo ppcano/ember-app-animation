@@ -1,6 +1,7 @@
 
 var ApplicationController = Ember.Controller.extend({
-  text: 'applicationText'
+  text: 'applicationText',
+  position: 1
 });
 
 export default ApplicationController;

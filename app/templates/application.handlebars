@@ -1,14 +1,9 @@
-Application: {{text}}
 
-<br/>
-{{#link-to 'account' elementId='account-link'}}Account{{/link-to}}
-<br/>
-{{#link-to 'settings'}}Settings{{/link-to}}
-<br/>
-<br/>
-
-{{view 'tree'}}
-
-{{app-person}}
-
-{{outlet}}
+{{#application-layout elementId="application-layout" position=position
+  animatedProperties="left"}}
+  {{!--outlet--}}
+  {{render 'account/detail' controller='account/detail'}}
+  {{render 'account/index' controller='account/index'}}
+  {{render 'index' controller='index'}}
+  {{render 'settings' controller='settings'}}
+{{/application-layout}}

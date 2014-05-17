@@ -31,6 +31,7 @@ precompiler.prototype.module = createPrecompilerModule(compilerOutput, handlebar
 // pickFiles
 var app = match('app', 'app/**/*.js');
 var emberResolver = match('app', 'submodules/ember-jj-abrams-resolver/packages/*/lib/core.js');
+var emberValidations = match('app', 'submodules/ember-validations/packages/ember-validations/lib/**/*.js');
 var emberAmdLibs = match('app', 'submodules/ember.js/packages_es6/*/lib/**/*.amd.js');
 var emberLibs = match('app', 'submodules/ember.js/packages/{rsvp,metamorph}/lib/main.js');
 var emberModules = match('app', 'submodules/ember.js/packages_es6/*/lib/**/!(*.amd).js');//https://github.com/isaacs/node-glob/issues/62
@@ -45,6 +46,7 @@ var emberMain = match('app', 'shims/ember.js');
 
 var es6Options = function(filePath) {
                     return filePath.replace('app/app', 'app')
+                                   .replace('app/submodules/ember-validations/packages/','')
                                    .replace('app/submodules/ember.js/packages/','')
                                    .replace('app/submodules/ember.js/packages_es6/','')
                                    .replace('lib/','')
@@ -53,7 +55,12 @@ var es6Options = function(filePath) {
                   };
 
 
+//emberValidations
+                  
 
+//emberQunit = replace(emberQunit, { match: /\"ember-qunit\"/g, replacement: "\"ember-qunit\/main\"" } );
+emberValidations = replace(emberValidations, { match: /require/g, replacement: "import " } );
+emberValidations = es6Filter(emberValidations, es6Options);
 
 // templates
 templates = precompiler(templates, {templateNameGenerator: function(filePath) {
@@ -86,7 +93,8 @@ handlebarsRuntime = selfExecuting(handlebarsRuntime);
 app = es6Filter(app, es6Options);
 
 // compose and build app.js
-var trees = [app, emberResolver, emberAmdLibs, emberLibs, emberMain, emberModules, handlebarsRuntime, jquery, templates];
+//var trees = [app, emberValidations, emberResolver, emberAmdLibs, emberLibs, emberMain, emberModules, handlebarsRuntime, jquery, templates];
+var trees = [app, emberValidations, emberResolver, emberAmdLibs, emberLibs, emberMain, emberModules, handlebarsRuntime, jquery, templates];
 
 // ember-qunit
 

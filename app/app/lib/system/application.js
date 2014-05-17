@@ -1,12 +1,21 @@
 
 import EmberApp from "ember-application/system/application";
+
+import 'app/extend/handler_info';
+import 'app/extend/router';
+
 import Resolver from 'app/system/resolver';
 import Router from 'app/system/router';
 
 
-Ember.ENV.LOG_MODULE_RESOLVER = true;
+Ember.ENV.LOG_MODULE_RESOLVER = false;
 
 var App = EmberApp.extend({
+
+  //http://stackoverflow.com/questions/2794148/css3-transition-events
+  customEvents: {
+    webkitTransitionEnd: "transitionEnd"
+  },
   LOG_ACTIVE_GENERATION: false,
   // LOG_TRANSITIONS: true,
   // LOG_TRANSITIONS_INTERNAL: true,
@@ -16,6 +25,7 @@ var App = EmberApp.extend({
   modulePrefix: 'app',
   Resolver: Resolver,
   Router: Router
+
 });
 
 
